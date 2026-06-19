@@ -1,0 +1,41 @@
+.flex {
+  display: flex;
+}
+
+.bar {
+  transition: width 300ms ease;
+}
+
+.gap-s {
+  gap: 4px
+}
+
+.gap-m {
+  gap: 8px
+}
+
+.gap-l {
+  gap: 12px
+}
+
+.gap-xl {
+  gap: 16px
+}
+
+.text-center {
+  text-align: center;
+}
+
+.m-0 {
+  margin: 0
+}
+
+.p-0 {
+  padding: 0
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
