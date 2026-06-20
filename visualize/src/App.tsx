@@ -3,6 +3,9 @@ import PieChart from './component/PieChart'
 import ActivityBarChart from './component/ActivityBarChart'
 import clusterData from "./data/cluster_centroids.json";
 import ScatterPlot from "./component/ScatterPlot";
+import RadialBar from "./component/RadialBar";
+import CombinedRadialBar from "./component/CombinedRadialBar";
+import Dendrogram from "./component/Dendogram";
 
 
 function App() {
@@ -15,7 +18,13 @@ function App() {
         <ActivityBarChart selectedCluster={selectedFirstCluster} />
         <ActivityBarChart selectedCluster={selectedSecondCluster} />
       </div>
+      <div className="flex">
+        <RadialBar selectedCluster={selectedFirstCluster} />
+        <RadialBar selectedCluster={selectedSecondCluster} />
+      </div>
+      <CombinedRadialBar selectedFirstCluster={selectedFirstCluster} selectedSecondCluster={selectedSecondCluster} />
       <ScatterPlot />
+      <Dendrogram />
     </>
   )
 }
