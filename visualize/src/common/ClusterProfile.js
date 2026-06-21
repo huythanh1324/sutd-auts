@@ -1,3 +1,5 @@
+import clusterLabel from "../data/cluster_labels.json"
+
 const clusterProfiles = {
     0: "Work + moderate routine",
     1: "Stay-home caregiver",
@@ -33,7 +35,7 @@ function getClusterId(cluster) {
 
 const getClusterProfile = (cluster) => {
     const id = getClusterId(cluster);
-    return clusterProfiles[id] || "Unknown cluster";
+    return clusterLabel[id].label || "Unknown cluster";
 }
 
 

@@ -1,0 +1,751 @@
+[
+  {
+    "activity_code": "0101**",
+    "major_code": "01",
+    "label": "Sleeping",
+    "total_minutes": 134479929,
+    "record_count_nonzero": 265247
+  },
+  {
+    "activity_code": "1203**",
+    "major_code": "12",
+    "label": "Leisure Relaxation",
+    "total_minutes": 62356962,
+    "record_count_nonzero": 382577
+  },
+  {
+    "activity_code": "0501**",
+    "major_code": "05",
+    "label": "Work Activities",
+    "total_minutes": 38781310,
+    "record_count_nonzero": 94755
+  },
+  {
+    "activity_code": "1101**",
+    "major_code": "11",
+    "label": "Eating Drinking",
+    "total_minutes": 17013292,
+    "record_count_nonzero": 241418
+  },
+  {
+    "activity_code": "0201**",
+    "major_code": "02",
+    "label": "Housework",
+    "total_minutes": 10373151,
+    "record_count_nonzero": 134871
+  },
+  {
+    "activity_code": "1201**",
+    "major_code": "12",
+    "label": "Socializing Communication",
+    "total_minutes": 10131859,
+    "record_count_nonzero": 90128
+  },
+  {
+    "activity_code": "0102**",
+    "major_code": "01",
+    "label": "Grooming",
+    "total_minutes": 10092580,
+    "record_count_nonzero": 195700
+  },
+  {
+    "activity_code": "0202**",
+    "major_code": "02",
+    "label": "Food Prep Clean",
+    "total_minutes": 9440665,
+    "record_count_nonzero": 204056
+  },
+  {
+    "activity_code": "0301**",
+    "major_code": "03",
+    "label": "HH Child Care",
+    "total_minutes": 6801216,
+    "record_count_nonzero": 120574
+  },
+  {
+    "activity_code": "0701**",
+    "major_code": "07",
+    "label": "Shopping",
+    "total_minutes": 6215421,
+    "record_count_nonzero": 136741
+  },
+  {
+    "activity_code": "1301**",
+    "major_code": "13",
+    "label": "Sports Recreation",
+    "total_minutes": 4478863,
+    "record_count_nonzero": 55215
+  },
+  {
+    "activity_code": "1807**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 3796746,
+    "record_count_nonzero": 116734
+  },
+  {
+    "activity_code": "0205**",
+    "major_code": "02",
+    "label": "Plants Gardening",
+    "total_minutes": 3260364,
+    "record_count_nonzero": 27094
+  },
+  {
+    "activity_code": "0209**",
+    "major_code": "02",
+    "label": "Household Management",
+    "total_minutes": 3237907,
+    "record_count_nonzero": 81313
+  },
+  {
+    "activity_code": "1805**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 3116858,
+    "record_count_nonzero": 72473
+  },
+  {
+    "activity_code": "1401**",
+    "major_code": "14",
+    "label": "Religious Practice",
+    "total_minutes": 3100652,
+    "record_count_nonzero": 34944
+  },
+  {
+    "activity_code": "5001**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 2989330,
+    "record_count_nonzero": 41115
+  },
+  {
+    "activity_code": "1812**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 2812285,
+    "record_count_nonzero": 79701
+  },
+  {
+    "activity_code": "0601**",
+    "major_code": "06",
+    "label": "Class Attendance",
+    "total_minutes": 1967159,
+    "record_count_nonzero": 7594
+  },
+  {
+    "activity_code": "1811**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 1845473,
+    "record_count_nonzero": 59130
+  },
+  {
+    "activity_code": "0603**",
+    "major_code": "06",
+    "label": "Homework Study",
+    "total_minutes": 1682316,
+    "record_count_nonzero": 9758
+  },
+  {
+    "activity_code": "0206**",
+    "major_code": "02",
+    "label": "Pet Care",
+    "total_minutes": 1622249,
+    "record_count_nonzero": 39634
+  },
+  {
+    "activity_code": "1202**",
+    "major_code": "12",
+    "label": "Social Events",
+    "total_minutes": 1537125,
+    "record_count_nonzero": 8130
+  },
+  {
+    "activity_code": "1204**",
+    "major_code": "12",
+    "label": "Arts Entertainment",
+    "total_minutes": 1494284,
+    "record_count_nonzero": 9614
+  },
+  {
+    "activity_code": "1601**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 1419161,
+    "record_count_nonzero": 35588
+  },
+  {
+    "activity_code": "0103**",
+    "major_code": "01",
+    "label": "Health Self Care",
+    "total_minutes": 1317780,
+    "record_count_nonzero": 17732
+  },
+  {
+    "activity_code": "0203**",
+    "major_code": "02",
+    "label": "Interior Maintenance",
+    "total_minutes": 1231226,
+    "record_count_nonzero": 9036
+  },
+  {
+    "activity_code": "1803**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 1214378,
+    "record_count_nonzero": 33526
+  },
+  {
+    "activity_code": "0401**",
+    "major_code": "04",
+    "label": "Nonhh Child Care",
+    "total_minutes": 1091135,
+    "record_count_nonzero": 16513
+  },
+  {
+    "activity_code": "0405**",
+    "major_code": "04",
+    "label": "Adult Assistance",
+    "total_minutes": 1010696,
+    "record_count_nonzero": 21980
+  },
+  {
+    "activity_code": "0204**",
+    "major_code": "02",
+    "label": "Exterior Maintenance",
+    "total_minutes": 972521,
+    "record_count_nonzero": 8241
+  },
+  {
+    "activity_code": "1804**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 953746,
+    "record_count_nonzero": 25762
+  },
+  {
+    "activity_code": "1802**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 686611,
+    "record_count_nonzero": 22844
+  },
+  {
+    "activity_code": "1813**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 667123,
+    "record_count_nonzero": 22320
+  },
+  {
+    "activity_code": "0804**",
+    "major_code": "08",
+    "label": "Medical Care Services",
+    "total_minutes": 664680,
+    "record_count_nonzero": 9572
+  },
+  {
+    "activity_code": "0207**",
+    "major_code": "02",
+    "label": "Vehicle Self Repair",
+    "total_minutes": 641214,
+    "record_count_nonzero": 6619
+  },
+  {
+    "activity_code": "1502**",
+    "major_code": "15",
+    "label": "Social Care Services",
+    "total_minutes": 614134,
+    "record_count_nonzero": 5278
+  },
+  {
+    "activity_code": "1501**",
+    "major_code": "15",
+    "label": "Administrative Tasks",
+    "total_minutes": 606463,
+    "record_count_nonzero": 7605
+  },
+  {
+    "activity_code": "0302**",
+    "major_code": "03",
+    "label": "Child Education",
+    "total_minutes": 573529,
+    "record_count_nonzero": 9328
+  },
+  {
+    "activity_code": "1599**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 514078,
+    "record_count_nonzero": 4141
+  },
+  {
+    "activity_code": "1899**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 505373,
+    "record_count_nonzero": 8672
+  },
+  {
+    "activity_code": "1302**",
+    "major_code": "13",
+    "label": "Sports Events",
+    "total_minutes": 499006,
+    "record_count_nonzero": 2965
+  },
+  {
+    "activity_code": "1808**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 495433,
+    "record_count_nonzero": 17803
+  },
+  {
+    "activity_code": "1814**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 472269,
+    "record_count_nonzero": 18280
+  },
+  {
+    "activity_code": "1699**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 427412,
+    "record_count_nonzero": 9377
+  },
+  {
+    "activity_code": "0503**",
+    "major_code": "05",
+    "label": "Income Activities",
+    "total_minutes": 405235,
+    "record_count_nonzero": 2517
+  },
+  {
+    "activity_code": "0504**",
+    "major_code": "05",
+    "label": "Job Search",
+    "total_minutes": 354504,
+    "record_count_nonzero": 2730
+  },
+  {
+    "activity_code": "0304**",
+    "major_code": "03",
+    "label": "HH Adult Care",
+    "total_minutes": 293268,
+    "record_count_nonzero": 5400
+  },
+  {
+    "activity_code": "1815**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 292174,
+    "record_count_nonzero": 10735
+  },
+  {
+    "activity_code": "0208**",
+    "major_code": "02",
+    "label": "Appliance Tools Care",
+    "total_minutes": 285255,
+    "record_count_nonzero": 3871
+  },
+  {
+    "activity_code": "0805**",
+    "major_code": "08",
+    "label": "Personal Care",
+    "total_minutes": 284574,
+    "record_count_nonzero": 4275
+  },
+  {
+    "activity_code": "1505**",
+    "major_code": "15",
+    "label": "Meetings Training",
+    "total_minutes": 254723,
+    "record_count_nonzero": 2086
+  },
+  {
+    "activity_code": "1801**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 237018,
+    "record_count_nonzero": 5332
+  },
+  {
+    "activity_code": "1806**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 228783,
+    "record_count_nonzero": 7215
+  },
+  {
+    "activity_code": "0404**",
+    "major_code": "04",
+    "label": "Nonhh Adult Care",
+    "total_minutes": 224787,
+    "record_count_nonzero": 2730
+  },
+  {
+    "activity_code": "1504**",
+    "major_code": "15",
+    "label": "Performance Arts",
+    "total_minutes": 180485,
+    "record_count_nonzero": 1450
+  },
+  {
+    "activity_code": "0303**",
+    "major_code": "03",
+    "label": "Child Health",
+    "total_minutes": 177246,
+    "record_count_nonzero": 3048
+  },
+  {
+    "activity_code": "0305**",
+    "major_code": "03",
+    "label": "Adult Assistance",
+    "total_minutes": 172420,
+    "record_count_nonzero": 7949
+  },
+  {
+    "activity_code": "0104**",
+    "major_code": "01",
+    "label": "Personal Care",
+    "total_minutes": 140446,
+    "record_count_nonzero": 1997
+  },
+  {
+    "activity_code": "1503**",
+    "major_code": "15",
+    "label": "Cleaning Maintenance",
+    "total_minutes": 124691,
+    "record_count_nonzero": 1189
+  },
+  {
+    "activity_code": "0905**",
+    "major_code": "09",
+    "label": "Vehicle Services",
+    "total_minutes": 106495,
+    "record_count_nonzero": 2593
+  },
+  {
+    "activity_code": "0802**",
+    "major_code": "08",
+    "label": "Banking Finance",
+    "total_minutes": 98842,
+    "record_count_nonzero": 6229
+  },
+  {
+    "activity_code": "1809**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 98609,
+    "record_count_nonzero": 3814
+  },
+  {
+    "activity_code": "0902**",
+    "major_code": "09",
+    "label": "Home Repair Outsource",
+    "total_minutes": 86135,
+    "record_count_nonzero": 1246
+  },
+  {
+    "activity_code": "0502**",
+    "major_code": "05",
+    "label": "Work Related",
+    "total_minutes": 78344,
+    "record_count_nonzero": 1119
+  },
+  {
+    "activity_code": "0806**",
+    "major_code": "08",
+    "label": "Real Estate",
+    "total_minutes": 69740,
+    "record_count_nonzero": 900
+  },
+  {
+    "activity_code": "1102**",
+    "major_code": "11",
+    "label": "Eating Waiting",
+    "total_minutes": 61230,
+    "record_count_nonzero": 2548
+  },
+  {
+    "activity_code": "0299**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 49301,
+    "record_count_nonzero": 411
+  },
+  {
+    "activity_code": "0602**",
+    "major_code": "06",
+    "label": "Class Attendance",
+    "total_minutes": 43525,
+    "record_count_nonzero": 336
+  },
+  {
+    "activity_code": "1001**",
+    "major_code": "10",
+    "label": "Government Services",
+    "total_minutes": 38403,
+    "record_count_nonzero": 844
+  },
+  {
+    "activity_code": "1816**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 36020,
+    "record_count_nonzero": 1374
+  },
+  {
+    "activity_code": "1810**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 33975,
+    "record_count_nonzero": 1100
+  },
+  {
+    "activity_code": "0699**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 33952,
+    "record_count_nonzero": 316
+  },
+  {
+    "activity_code": "1002**",
+    "major_code": "10",
+    "label": "Civic Duties",
+    "total_minutes": 26673,
+    "record_count_nonzero": 392
+  },
+  {
+    "activity_code": "1818**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 25483,
+    "record_count_nonzero": 443
+  },
+  {
+    "activity_code": "0402**",
+    "major_code": "04",
+    "label": "Nonhh Child Edu",
+    "total_minutes": 24751,
+    "record_count_nonzero": 383
+  },
+  {
+    "activity_code": "0604**",
+    "major_code": "06",
+    "label": "Administrative Tasks",
+    "total_minutes": 24739,
+    "record_count_nonzero": 331
+  },
+  {
+    "activity_code": "0807**",
+    "major_code": "08",
+    "label": "Pet Care",
+    "total_minutes": 24618,
+    "record_count_nonzero": 572
+  },
+  {
+    "activity_code": "1506**",
+    "major_code": "15",
+    "label": "Public Safety",
+    "total_minutes": 24483,
+    "record_count_nonzero": 206
+  },
+  {
+    "activity_code": "1205**",
+    "major_code": "12",
+    "label": "Social Waiting",
+    "total_minutes": 24403,
+    "record_count_nonzero": 765
+  },
+  {
+    "activity_code": "0702**",
+    "major_code": "07",
+    "label": "Purchase Research",
+    "total_minutes": 20768,
+    "record_count_nonzero": 323
+  },
+  {
+    "activity_code": "0901**",
+    "major_code": "09",
+    "label": "Household Services",
+    "total_minutes": 17381,
+    "record_count_nonzero": 1110
+  },
+  {
+    "activity_code": "0899**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 15091,
+    "record_count_nonzero": 240
+  },
+  {
+    "activity_code": "0403**",
+    "major_code": "04",
+    "label": "Nonhh Child Health",
+    "total_minutes": 14425,
+    "record_count_nonzero": 180
+  },
+  {
+    "activity_code": "1303**",
+    "major_code": "13",
+    "label": "Sports Waiting",
+    "total_minutes": 14127,
+    "record_count_nonzero": 376
+  },
+  {
+    "activity_code": "1003**",
+    "major_code": "10",
+    "label": "Govt Waiting",
+    "total_minutes": 10793,
+    "record_count_nonzero": 190
+  },
+  {
+    "activity_code": "1499**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 8934,
+    "record_count_nonzero": 98
+  },
+  {
+    "activity_code": "0803**",
+    "major_code": "08",
+    "label": "Legal Services",
+    "total_minutes": 8163,
+    "record_count_nonzero": 143
+  },
+  {
+    "activity_code": "0904**",
+    "major_code": "09",
+    "label": "Lawn Garden Care",
+    "total_minutes": 8155,
+    "record_count_nonzero": 180
+  },
+  {
+    "activity_code": "0801**",
+    "major_code": "08",
+    "label": "Childcare Services",
+    "total_minutes": 8011,
+    "record_count_nonzero": 419
+  },
+  {
+    "activity_code": "5099**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 7416,
+    "record_count_nonzero": 104
+  },
+  {
+    "activity_code": "0903**",
+    "major_code": "09",
+    "label": "Pet Services",
+    "total_minutes": 7156,
+    "record_count_nonzero": 297
+  },
+  {
+    "activity_code": "0499**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 6901,
+    "record_count_nonzero": 60
+  },
+  {
+    "activity_code": "0999**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 4591,
+    "record_count_nonzero": 90
+  },
+  {
+    "activity_code": "0399**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 4540,
+    "record_count_nonzero": 58
+  },
+  {
+    "activity_code": "1399**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 4448,
+    "record_count_nonzero": 69
+  },
+  {
+    "activity_code": "1299**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 4347,
+    "record_count_nonzero": 48
+  },
+  {
+    "activity_code": "0599**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 4002,
+    "record_count_nonzero": 42
+  },
+  {
+    "activity_code": "0199**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 817,
+    "record_count_nonzero": 18
+  },
+  {
+    "activity_code": "1099**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 673,
+    "record_count_nonzero": 13
+  },
+  {
+    "activity_code": "0105**",
+    "major_code": "01",
+    "label": "Care Emergency",
+    "total_minutes": 555,
+    "record_count_nonzero": 17
+  },
+  {
+    "activity_code": "0799**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 446,
+    "record_count_nonzero": 8
+  },
+  {
+    "activity_code": "1004**",
+    "major_code": "10",
+    "label": "Govt Security",
+    "total_minutes": 243,
+    "record_count_nonzero": 15
+  },
+  {
+    "activity_code": "1304**",
+    "major_code": "13",
+    "label": "Sports Security",
+    "total_minutes": 116,
+    "record_count_nonzero": 8
+  },
+  {
+    "activity_code": "0703**",
+    "major_code": "07",
+    "label": "Consumer Security",
+    "total_minutes": 97,
+    "record_count_nonzero": 5
+  },
+  {
+    "activity_code": "1199**",
+    "major_code": "",
+    "label": "",
+    "total_minutes": 20,
+    "record_count_nonzero": 3
+  },
+  {
+    "activity_code": "0808**",
+    "major_code": "08",
+    "label": "Service Security",
+    "total_minutes": 10,
+    "record_count_nonzero": 2
+  }
+]

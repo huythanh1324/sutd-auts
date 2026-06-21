@@ -6,7 +6,7 @@ import ScatterPlot from "./component/ScatterPlot";
 import RadialBar from "./component/RadialBar";
 import CombinedRadialBar from "./component/CombinedRadialBar";
 import Dendrogram from "./component/Dendogram";
-
+import WordCloud from "./component/WordCloud";
 
 function App() {
   const [selectedFirstCluster, setSelectedFirstCluster] = useState(clusterData[0]);
@@ -23,8 +23,9 @@ function App() {
         <RadialBar selectedCluster={selectedSecondCluster} />
       </div>
       <CombinedRadialBar selectedFirstCluster={selectedFirstCluster} selectedSecondCluster={selectedSecondCluster} />
-      <ScatterPlot />
+      {/* <ScatterPlot /> */}
       <Dendrogram />
+      <WordCloud />
     </>
   )
 }

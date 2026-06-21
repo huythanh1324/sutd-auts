@@ -1,4 +1,4 @@
-import React, { Activity } from 'react';
+import React, { Activity, useState } from 'react';
 import { Arc } from '@visx/shape';
 import { scaleLinear } from '@visx/scale';
 import activityColors from "../constant/activityColor"
@@ -12,7 +12,7 @@ type Datum = {
 };
 
 const width = 500;
-const height = 500;
+const height = 600;
 
 const CombinedRadialBar = ({ selectedFirstCluster, selectedSecondCluster }) => {
 
@@ -30,17 +30,27 @@ const CombinedRadialBar = ({ selectedFirstCluster, selectedSecondCluster }) => {
         proportion,
     }));
 
+    const [hoveredActivity, setHoveredActivity] = useState<string | null>(null);
+
+    const firstMap = Object.fromEntries(
+        dataFirstCluster.map(d => [d.activity, d.proportion])
+    );
+
+    const secondMap = Object.fromEntries(
+        dataSecondCluster.map(d => [d.activity, d.proportion])
+    );
+
     const centerX = width / 2;
     const centerY = height / 2;
 
-    const innerRadius = 60;
-    const maxOuterRadius = 180;
+    const innerRadius = 100;
+    const maxOuterRadius = 260;
 
 
 
     const radiusScale = scaleLinear({
         domain: [0, Math.max(...dataFirstCluster.map((d) => d.proportion), ...dataSecondCluster.map((d) => d.proportion))],
-        range: [innerRadius, maxOuterRadius],
+        range: [innerRadius + 3, maxOuterRadius],
     });
 
     const angleStep = (2 * Math.PI) / dataFirstCluster.length;
@@ -72,7 +82,11 @@ const CombinedRadialBar = ({ selectedFirstCluster, selectedSecondCluster }) => {
                             Math.sin(midAngle - Math.PI / 2) * labelRadius;
 
                         return (
-                            <g key={d.activity}>
+                            <g
+                                key={d.activity}
+                                onMouseEnter={() => setHoveredActivity(d.activity)}
+                                onMouseLeave={() => setHoveredActivity(null)}
+                            >
                                 <Arc
                                     opacity={0.5}
                                     innerRadius={innerRadius}
@@ -102,7 +116,11 @@ const CombinedRadialBar = ({ selectedFirstCluster, selectedSecondCluster }) => {
                             Math.sin(midAngle - Math.PI / 2) * labelRadius;
 
                         return (
-                            <g key={d.activity}>
+                            <g
+                                key={d.activity}
+                                onMouseEnter={() => setHoveredActivity(d.activity)}
+                                onMouseLeave={() => setHoveredActivity(null)}
+                            >
                                 <Arc
                                     opacity={0.5}
                                     innerRadius={innerRadius}
@@ -114,6 +132,29 @@ const CombinedRadialBar = ({ selectedFirstCluster, selectedSecondCluster }) => {
                             </g>
                         );
                     })}
+                    {hoveredActivity && (
+                        <text
+                            x={0}
+                            y={0}
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            fontSize={16}
+                            fill="#111"
+                            style={{ pointerEvents: 'none' }}
+                        >
+                            <tspan x={0} dy={-10} fontWeight={600}>
+                                {hoveredActivity}
+                            </tspan>
+
+                            <tspan x={0} dy={22} fontSize={14} fill="#555">
+                                First: {(firstMap[hoveredActivity] * 100).toFixed(2)}%
+                            </tspan>
+
+                            <tspan x={0} dy={18} fontSize={14} fill="#555">
+                                Second: {(secondMap[hoveredActivity] * 100).toFixed(2)}%
+                            </tspan>
+                        </text>
+                    )}
                 </g>
             </svg>
             {/* <LegendOrdinal
@@ -121,7 +162,7 @@ const CombinedRadialBar = ({ selectedFirstCluster, selectedSecondCluster }) => {
                 direction="column"
                 labelMargin="0 0 0 8px"
             /> */}
-        </div>
+        </div >
     );
 }
 

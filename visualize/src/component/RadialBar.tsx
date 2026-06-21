@@ -1,4 +1,4 @@
-import React, { Activity } from 'react';
+import React, { Activity, useState } from 'react';
 import { Arc } from '@visx/shape';
 import { scaleLinear } from '@visx/scale';
 import activityColors from "../constant/activityColor"
@@ -12,7 +12,7 @@ type Datum = {
 };
 
 const width = 500;
-const height = 500;
+const height = 600;
 
 const RadialBar = ({ selectedCluster }) => {
 
@@ -23,17 +23,22 @@ const RadialBar = ({ selectedCluster }) => {
         proportion,
     }));
 
+    const [hovered, setHovered] = useState<null | {
+        activity: string;
+        proportion: number;
+    }>(null);
+
     const centerX = width / 2;
     const centerY = height / 2;
 
-    const innerRadius = 60;
-    const maxOuterRadius = 180;
+    const innerRadius = 100;
+    const maxOuterRadius = 260;
 
 
 
     const radiusScale = scaleLinear({
         domain: [0, Math.max(...data.map((d) => d.proportion))],
-        range: [innerRadius, maxOuterRadius],
+        range: [innerRadius + 3, maxOuterRadius],
     });
 
     const angleStep = (2 * Math.PI) / data.length;
@@ -65,7 +70,17 @@ const RadialBar = ({ selectedCluster }) => {
                             Math.sin(midAngle - Math.PI / 2) * labelRadius;
 
                         return (
-                            <g key={d.activity}>
+                            <g
+                                key={d.activity}
+                                onMouseEnter={() =>
+                                    setHovered({
+                                        activity: d.activity,
+                                        proportion: d.proportion,
+                                    })
+                                }
+                                onMouseLeave={() => setHovered(null)}
+                                style={{ cursor: 'pointer' }}
+                            >
                                 <Arc
                                     innerRadius={innerRadius}
                                     outerRadius={outerRadius}
@@ -97,6 +112,24 @@ const RadialBar = ({ selectedCluster }) => {
                             </g>
                         );
                     })}
+                    {hovered && (
+                        <text
+                            x={0}
+                            y={0}
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            fontSize={16}
+                            fill="#111"
+                            style={{ pointerEvents: 'none' }}
+                        >
+                            <tspan x={0} dy={-6} fontWeight={600}>
+                                {hovered.activity}
+                            </tspan>
+                            <tspan x={0} dy={20} fontSize={14} fill="#555">
+                                {(hovered.proportion * 100).toFixed(2)}%
+                            </tspan>
+                        </text>
+                    )}
                 </g>
             </svg>
             <LegendOrdinal

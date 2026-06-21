@@ -1,0 +1,142 @@
+{
+  "0": {
+    "cluster_id": 0,
+    "n_members": 3821,
+    "pct_of_total": 5.07,
+    "label": "Overworked adults with minimal personal time",
+    "reason": "A dedicated worker dedicates a substantial portion of their day to the job, resulting in significantly less time for personal leisure or managing household chores."
+  },
+  "1": {
+    "cluster_id": 1,
+    "n_members": 4768,
+    "pct_of_total": 6.33,
+    "label": "High-duty caregiving, low personal time",
+    "reason": "These caregivers spend most of their day managing childcare and housework, significantly reducing hours dedicated to paid work and leisure."
+  },
+  "2": {
+    "cluster_id": 2,
+    "n_members": 5254,
+    "pct_of_total": 6.98,
+    "label": "Leisure-Rich, Low-Work Retirees",
+    "reason": "These retirees allocate the majority of their time to sleep and structured leisure activities, dedicating minimal hours to traditional employment or domestic responsibilities."
+  },
+  "3": {
+    "cluster_id": 3,
+    "n_members": 3510,
+    "pct_of_total": 4.66,
+    "label": "Non-working caregivers prioritizing home life",
+    "reason": "This group consists primarily of stay-at-home parents or spouses whose schedules revolve around childcare and household management, dedicating minimal time to professional work or travel."
+  },
+  "4": {
+    "cluster_id": 4,
+    "n_members": 3222,
+    "pct_of_total": 4.28,
+    "label": "Intensive Caregivers With Low Working Hours",
+    "reason": "Parents in this cluster dedicate most of their day to intense domestic labor and caring for children, resulting in significantly less time at paid work or engaging in leisure activities."
+  },
+  "5": {
+    "cluster_id": 5,
+    "n_members": 3401,
+    "pct_of_total": 4.52,
+    "label": "Caregiving Focus, Low Formal Employment",
+    "reason": "Individuals in this cluster primarily function as full-time caregivers, dedicating significant daily time to housework and intensive childcare while drastically reducing paid work hours."
+  },
+  "6": {
+    "cluster_id": 6,
+    "n_members": 4774,
+    "pct_of_total": 6.34,
+    "label": "Highly mobile, professional workers",
+    "reason": "As workers, their lives are dominated by significant working hours and daily travel requirements, severely limiting time for leisure or adequate sleep."
+  },
+  "7": {
+    "cluster_id": 7,
+    "n_members": 2884,
+    "pct_of_total": 3.83,
+    "label": "Dedicated domestic caretakers, not workers",
+    "reason": "The typical person in this cluster maintains a demanding home life, dedicating significant time to housework and childcare rather than traditional employment or travel."
+  },
+  "8": {
+    "cluster_id": 8,
+    "n_members": 3945,
+    "pct_of_total": 5.24,
+    "label": "Overworked Professionals, Minimal Downtime",
+    "reason": "The typical person is highly career-focused, spending significantly more time working while minimizing both household responsibilities and leisure activities."
+  },
+  "9": {
+    "cluster_id": 9,
+    "n_members": 3732,
+    "pct_of_total": 4.96,
+    "label": "Mobile workers prioritizing career and travel",
+    "reason": "These individuals are high-demand professionals whose lives revolve around work and extensive travel, necessitating a major sacrifice of sleep and domestic time."
+  },
+  "10": {
+    "cluster_id": 10,
+    "n_members": 4208,
+    "pct_of_total": 5.59,
+    "label": "Highly engaged caregiving households",
+    "reason": "The typical person in this cluster operates primarily as a caregiver and household manager, dedicating significantly reduced time to paid employment while accumulating high levels of domestic labor."
+  },
+  "11": {
+    "cluster_id": 11,
+    "n_members": 3722,
+    "pct_of_total": 4.94,
+    "label": "Leisure-focused homemakers, minimal labor",
+    "reason": "The typical individual is likely semi-retired or non-working, allocating the bulk of their time to leisure activities and maintaining their household rather than participating in paid work or intense childcare."
+  },
+  "12": {
+    "cluster_id": 12,
+    "n_members": 3259,
+    "pct_of_total": 4.33,
+    "label": "Intensive caregiving, low work rhythm",
+    "reason": "A highly involved caregiver manages intensive domestic and logistical demands while working significantly fewer hours than the average person."
+  },
+  "13": {
+    "cluster_id": 13,
+    "n_members": 4083,
+    "pct_of_total": 5.42,
+    "label": "Overworked workers with minimal household duties",
+    "reason": "Professionally focused, these individuals spend substantial time working and sleeping while relying heavily on external services to handle most of their housework and childcare needs."
+  },
+  "14": {
+    "cluster_id": 14,
+    "n_members": 4186,
+    "pct_of_total": 5.56,
+    "label": "Leisure-focused, homebound non-workers",
+    "reason": "These individuals are primarily retired or semi-retired adults whose days revolve around extensive sleep and leisure activities, significantly reducing their need for paid work, travel, or dedicated childcare."
+  },
+  "15": {
+    "cluster_id": 15,
+    "n_members": 2891,
+    "pct_of_total": 3.84,
+    "label": "Enriched Travelers with Low Workload",
+    "reason": "Self-directed individuals characterize this profile, prioritizing intellectual development through education and travel while dedicating minimal time to paid work or domestic duties."
+  },
+  "16": {
+    "cluster_id": 16,
+    "n_members": 2799,
+    "pct_of_total": 3.72,
+    "label": "Overloaded workers managing travel and caregiving",
+    "reason": "These individuals function as highly active workers and caregivers whose time is consumed by professional duties, child logistics, and related movement."
+  },
+  "17": {
+    "cluster_id": 17,
+    "n_members": 3127,
+    "pct_of_total": 4.15,
+    "label": "Leisure-focused non-working adults",
+    "reason": "As individuals who are not primarily working or engaged in heavy childcare, they dedicate significant time to sleep and unstructured leisure screen activities."
+  },
+  "18": {
+    "cluster_id": 18,
+    "n_members": 4174,
+    "pct_of_total": 5.54,
+    "label": "Overcommitted, traveling working parents",
+    "reason": "Primarily working caregivers who dedicate significant portions of their day to commuting, employment, and family logistics at the expense of rest and leisure."
+  },
+  "19": {
+    "cluster_id": 19,
+    "n_members": 3548,
+    "pct_of_total": 4.71,
+    "label": "Intellectual pursuits over standard career demands",
+    "reason": "These individuals prioritize professional development and personal education, significantly reducing time spent in traditional work or domestic responsibilities."
+  }
+}

@@ -7,6 +7,7 @@ import type {
 } from '@visx/hierarchy';
 import { LinkHorizontal } from '@visx/shape';
 import clustersData from '../data/cluster_centroids.json'
+import getClusterProfile from "../common/ClusterProfile.js"
 
 const background = '#FFFFFF';
 const branchColor = '#94a3b8';
@@ -22,6 +23,7 @@ interface ClusterInfo {
 interface TreeNode {
     name: string;
     children?: TreeNode[];
+    isLeaf: boolean;
 }
 
 type ClusterMap = Record<string, ClusterInfo>;
@@ -78,6 +80,7 @@ function insertPath(
             child = {
                 name: activity,
                 children: [],
+                isLeaf: false
             };
 
             current.children.push(child);
@@ -89,7 +92,8 @@ function insertPath(
     current.children ??= [];
 
     current.children.push({
-        name: `Cluster ${clusterId}`,
+        name: getClusterProfile(`Cluster ${clusterId}`),
+        isLeaf: true
     });
 }
 
@@ -97,6 +101,7 @@ function buildTree(clusters: ClusterMap): TreeNode {
     const root: TreeNode = {
         name: 'Root',
         children: [],
+        isLeaf: false
     };
 
     Object.values(clusters).forEach(cluster => {
@@ -119,7 +124,7 @@ function TreeNodeComponent({
 
     const isClusterLeaf =
         !node.children &&
-        node.data.name.startsWith('Cluster');
+        node.data.isLeaf;
 
     const fillColor = isRoot
         ? rootColor

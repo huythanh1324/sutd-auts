@@ -2,6 +2,7 @@ import React from 'react'
 import { scaleLinear, scaleBand } from "@visx/scale";
 import { AxisLeft, AxisBottom } from "@visx/axis";
 import { Bar } from "@visx/shape";
+import getClusterProfile from "../common/ClusterProfile.js"
 
 const ActivityBarChart = ({ selectedCluster }) => {
     const width = 550;
@@ -37,7 +38,7 @@ const ActivityBarChart = ({ selectedCluster }) => {
 
     return (
         <div >
-            <h4 className='text-center m-0'>Cluster {selectedCluster.cluster_id}</h4>
+            <h4 className='text-center m-0'>{getClusterProfile(`Cluster ${selectedCluster.cluster_id}`)}</h4>
             <svg width={width} height={height}>
                 <g transform={`translate(${margin.left},${margin.top})`}>
                     {data.map((d) => {
