@@ -147,11 +147,11 @@ const CombinedRadialBar = ({ selectedFirstCluster, selectedSecondCluster }) => {
                             </tspan>
 
                             <tspan x={0} dy={22} fontSize={14} fill="#555">
-                                First: {(firstMap[hoveredActivity] * 100).toFixed(2)}%
+                                First: {(firstMap[hoveredActivity] * 24).toFixed(2)} hr
                             </tspan>
 
                             <tspan x={0} dy={18} fontSize={14} fill="#555">
-                                Second: {(secondMap[hoveredActivity] * 100).toFixed(2)}%
+                                Second: {(secondMap[hoveredActivity] * 24).toFixed(2)} hr
                             </tspan>
                         </text>
                     )}

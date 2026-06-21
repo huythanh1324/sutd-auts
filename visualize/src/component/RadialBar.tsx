@@ -126,7 +126,7 @@ const RadialBar = ({ selectedCluster }) => {
                                 {hovered.activity}
                             </tspan>
                             <tspan x={0} dy={20} fontSize={14} fill="#555">
-                                {(hovered.proportion * 100).toFixed(2)}%
+                                {(hovered.proportion * 24).toFixed(2)} hrs
                             </tspan>
                         </text>
                     )}
