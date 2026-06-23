@@ -17,7 +17,6 @@ const PieChart = ({
   const height = 400;
   const radius = Math.min(width, height) / 2;
   const [tooltip, setTooltip] = useState(null);
-
   const data = Object.values(clusterData).map((cluster) => ({
     id: cluster.cluster_id,
     label: getClusterProfile(`Cluster ${cluster.cluster_id}`),
@@ -31,7 +30,7 @@ const PieChart = ({
     range: colors,
   });
 
-  const firstId  = selectedFirstCluster?.cluster_id;
+  const firstId = selectedFirstCluster?.cluster_id;
   const secondId = selectedSecondCluster?.cluster_id;
 
   return (
@@ -46,24 +45,24 @@ const PieChart = ({
           >
             {(pie) =>
               pie.arcs.map((arc, index) => {
-                const isFirst  = arc.data.id === firstId;
+                const isFirst = arc.data.id === firstId;
                 const isSecond = arc.data.id === secondId;
 
-                let stroke      = '#fff';
+                let stroke = '#fff';
                 let strokeWidth = 1;
-                let className   = '';
+                let className = '';
 
                 if (isFirst && isSecond) {
-                  className   = 'pie-slice--selected-both';
-                  stroke      = '#635bff';
+                  className = 'pie-slice--selected-both';
+                  stroke = '#635bff';
                   strokeWidth = 3;
                 } else if (isFirst) {
-                  className   = 'pie-slice--selected-a';
-                  stroke      = '#635bff';
+                  className = 'pie-slice--selected-a';
+                  stroke = '#635bff';
                   strokeWidth = 3;
                 } else if (isSecond) {
-                  className   = 'pie-slice--selected-b';
-                  stroke      = '#f59e0b';
+                  className = 'pie-slice--selected-b';
+                  stroke = '#f59e0b';
                   strokeWidth = 3;
                 }
 
@@ -83,11 +82,11 @@ const PieChart = ({
                       });
                     }}
                     onClick={() => {
-                      setSelectedFirstCluster(clusterData[arc.data.id]);
+                      setSelectedFirstCluster(clusterData[index]);
                     }}
                     onContextMenu={(e) => {
                       e.preventDefault();
-                      setSelectedSecondCluster(clusterData[arc.data.id]);
+                      setSelectedSecondCluster(clusterData[index]);
                     }}
                     onMouseLeave={() => setTooltip(null)}
                     style={{

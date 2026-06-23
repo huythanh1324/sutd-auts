@@ -41,11 +41,11 @@ function App() {
       if (selectedActivity === undefined) return true;
       const value = (cluster.activity_proportions[selectedActivity] ?? 0) * 24;
       switch (operator) {
-        case ">":  return value > Number(threshold);
-        case "<":  return value < Number(threshold);
+        case ">": return value > Number(threshold);
+        case "<": return value < Number(threshold);
         case ">=": return value >= Number(threshold);
         case "<=": return value <= Number(threshold);
-        default:   return true;
+        default: return true;
       }
     });
   }, [clusters, selectedActivity, operator, threshold]);
@@ -77,7 +77,7 @@ function App() {
           </span>
           <span className="drawer-trigger__label">Clusters</span>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
         <span className="nav__badge" style={{ marginLeft: 12 }}>American Time Use Survey</span>
@@ -92,7 +92,7 @@ function App() {
           <span className="drawer__title">Select Clusters</span>
           <button className="drawer__close" onClick={() => setDrawerOpen(false)}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           </button>
         </div>
@@ -113,14 +113,14 @@ function App() {
 
         <div className="drawer__list">
           {clusters.map((c, i) => {
-            const isFirst  = c.cluster_id === selectedFirstCluster.cluster_id;
+            const isFirst = c.cluster_id === selectedFirstCluster.cluster_id;
             const isSecond = c.cluster_id === selectedSecondCluster.cluster_id;
             return (
               <button
                 key={c.cluster_id}
                 className={[
                   'drawer__item',
-                  isFirst  ? 'drawer__item--a' : '',
+                  isFirst ? 'drawer__item--a' : '',
                   isSecond ? 'drawer__item--b' : '',
                 ].join(' ')}
                 onClick={() => setSelectedFirstCluster(c)}
@@ -129,7 +129,7 @@ function App() {
                 <span className="drawer__item-swatch" style={{ background: colors[i % colors.length] }} />
                 <span className="drawer__item-name">{getClusterProfile(`Cluster ${c.cluster_id}`)}</span>
                 <span className="drawer__item-badges">
-                  {isFirst  && <span className="cluster-slider__role cluster-slider__role--a" style={{ width: 18, height: 18, fontSize: 10 }}>A</span>}
+                  {isFirst && <span className="cluster-slider__role cluster-slider__role--a" style={{ width: 18, height: 18, fontSize: 10 }}>A</span>}
                   {isSecond && <span className="cluster-slider__role cluster-slider__role--b" style={{ width: 18, height: 18, fontSize: 10 }}>B</span>}
                 </span>
               </button>
@@ -250,7 +250,7 @@ function App() {
                   <div className="card__title">Primary Cluster</div>
                   <div className="card__subtitle">Left-click a pie slice to change</div>
                 </div>
-                <span className="tag tag--blue">Cluster A</span>
+                <span className="tag tag--blue">{`${getClusterProfile(`Cluster ${selectedFirstCluster.cluster_id}`)}`}</span>
               </div>
               <div className="card__body">
                 <RadialBar selectedCluster={selectedFirstCluster} />
@@ -262,7 +262,7 @@ function App() {
                   <div className="card__title">Comparison Cluster</div>
                   <div className="card__subtitle">Right-click a pie slice to change</div>
                 </div>
-                <span className="tag tag--yellow">Cluster B</span>
+                <span className="tag tag--yellow">{`${getClusterProfile(`Cluster ${selectedSecondCluster.cluster_id}`)}`}</span>
               </div>
               <div className="card__body">
                 <RadialBar selectedCluster={selectedSecondCluster} />
@@ -318,7 +318,7 @@ function App() {
             <div key={activity} className="legend-panel__item">
               <span className="legend-panel__dot" style={{ background: color }} />
               <span className="legend-panel__label">{activity}</span>
-              <span className="legend-panel__value">{(proportion * 24).toFixed(1)}h</span>
+              {/* <span className="legend-panel__value">{(proportion * 24).toFixed(1)}h</span> */}
             </div>
           ))}
         </div>
