@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import PieChart from './component/PieChart'
 import ActivityBarChart from './component/ActivityBarChart'
 import clusterData from "./data/cluster_centroids.json";
@@ -7,6 +7,7 @@ import CombinedRadialBar from "./component/CombinedRadialBar";
 import WordCloud from "./component/WordCloud";
 import getClusterProfile from "./common/ClusterProfile.js";
 import colors from "./constant/colors";
+import activityColors from "./constant/activityColor";
 
 function App() {
   const clusters = Object.values(clusterData);
@@ -19,9 +20,25 @@ function App() {
   const [operator, setOperator] = useState<string>(">=");
   const [threshold, setThreshold] = useState<number>(0);
 
+  // Drawer state
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // Radial section visibility for sticky legend panel
+  const radialSectionRef = useRef<HTMLDivElement>(null);
+  const [showLegendPanel, setShowLegendPanel] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowLegendPanel(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    if (radialSectionRef.current) observer.observe(radialSectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const filteredClusters = useMemo(() => {
     return clusters.filter((cluster) => {
-      if (selectedActivity === undefined || operator === undefined || threshold === undefined) return true;
+      if (selectedActivity === undefined) return true;
       const value = (cluster.activity_proportions[selectedActivity] ?? 0) * 24;
       switch (operator) {
         case ">":  return value > Number(threshold);
@@ -33,10 +50,15 @@ function App() {
     });
   }, [clusters, selectedActivity, operator, threshold]);
 
+  // Build activity legend entries from the selected primary cluster
+  const activityEntries = Object.entries(selectedFirstCluster.activity_proportions).map(
+    ([activity, proportion], i) => ({ activity, proportion: proportion as number, color: activityColors[i] })
+  );
+
   return (
     <div className="page">
 
-      {/* ── Top Navigation ───────────────────────────────────────── */}
+      {/* ── Top Navigation ── */}
       <nav className="nav">
         <a className="nav__brand" href="#">
           <div className="nav__logo">A</div>
@@ -46,10 +68,77 @@ function App() {
           </span>
         </a>
         <div className="nav__spacer" />
-        <span className="nav__badge">American Time Use Survey</span>
+        {/* Drawer trigger button */}
+        <button className="drawer-trigger" onClick={() => setDrawerOpen(true)}>
+          <span className="drawer-trigger__swatches">
+            {clusters.slice(0, 5).map((c, i) => (
+              <span key={c.cluster_id} className="drawer-trigger__dot" style={{ background: colors[i % colors.length] }} />
+            ))}
+          </span>
+          <span className="drawer-trigger__label">Clusters</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+        <span className="nav__badge" style={{ marginLeft: 12 }}>American Time Use Survey</span>
       </nav>
 
-      {/* ── Hero ─────────────────────────────────────────────────── */}
+      {/* ── Cluster Drawer ── */}
+      {drawerOpen && (
+        <div className="drawer-backdrop" onClick={() => setDrawerOpen(false)} />
+      )}
+      <div className={`drawer ${drawerOpen ? 'drawer--open' : ''}`}>
+        <div className="drawer__header">
+          <span className="drawer__title">Select Clusters</span>
+          <button className="drawer__close" onClick={() => setDrawerOpen(false)}>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <p className="drawer__hint">Left-click = Cluster A &nbsp;·&nbsp; Right-click = Cluster B</p>
+
+        <div className="drawer__selected">
+          <div className="drawer__selected-row">
+            <span className="cluster-slider__role cluster-slider__role--a">A</span>
+            <span className="drawer__selected-name">{getClusterProfile(`Cluster ${selectedFirstCluster.cluster_id}`)}</span>
+          </div>
+          <div className="drawer__selected-row">
+            <span className="cluster-slider__role cluster-slider__role--b">B</span>
+            <span className="drawer__selected-name">{getClusterProfile(`Cluster ${selectedSecondCluster.cluster_id}`)}</span>
+          </div>
+        </div>
+
+        <div className="drawer__divider" />
+
+        <div className="drawer__list">
+          {clusters.map((c, i) => {
+            const isFirst  = c.cluster_id === selectedFirstCluster.cluster_id;
+            const isSecond = c.cluster_id === selectedSecondCluster.cluster_id;
+            return (
+              <button
+                key={c.cluster_id}
+                className={[
+                  'drawer__item',
+                  isFirst  ? 'drawer__item--a' : '',
+                  isSecond ? 'drawer__item--b' : '',
+                ].join(' ')}
+                onClick={() => setSelectedFirstCluster(c)}
+                onContextMenu={(e) => { e.preventDefault(); setSelectedSecondCluster(c); }}
+              >
+                <span className="drawer__item-swatch" style={{ background: colors[i % colors.length] }} />
+                <span className="drawer__item-name">{getClusterProfile(`Cluster ${c.cluster_id}`)}</span>
+                <span className="drawer__item-badges">
+                  {isFirst  && <span className="cluster-slider__role cluster-slider__role--a" style={{ width: 18, height: 18, fontSize: 10 }}>A</span>}
+                  {isSecond && <span className="cluster-slider__role cluster-slider__role--b" style={{ width: 18, height: 18, fontSize: 10 }}>B</span>}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Hero ── */}
       <header className="page__hero">
         <p className="page__hero-label">Analytics Dashboard</p>
         <h1 className="page__hero-title">Time Use Cluster Explorer</h1>
@@ -73,10 +162,10 @@ function App() {
         </div>
       </header>
 
-      {/* ── Page Body ────────────────────────────────────────────── */}
+      {/* ── Page Body ── */}
       <main className="page__body">
 
-        {/* ── Section 1: Activity Overview ─────────────────────── */}
+        {/* Section 1: Activity Overview */}
         <section className="section animate-fade-in">
           <div className="section__header">
             <h2 className="section__title">Activity Overview</h2>
@@ -96,7 +185,7 @@ function App() {
           </div>
         </section>
 
-        {/* ── Section 2: Cluster Explorer (pie + filter combined) ── */}
+        {/* Section 2: Cluster Explorer */}
         <section className="section animate-fade-in">
           <div className="section__header">
             <h2 className="section__title">Cluster Explorer</h2>
@@ -104,9 +193,7 @@ function App() {
               Filter clusters by activity · Left-click a slice to set primary · Right-click to set comparison
             </span>
           </div>
-
           <div className="card">
-            {/* Filter bar lives inside the same card, above the chart */}
             <div className="card__header">
               <div>
                 <div className="card__title">Filter &amp; Select Clusters</div>
@@ -114,51 +201,29 @@ function App() {
               </div>
               <span className="tag tag--green">Interactive</span>
             </div>
-
             <div className="cluster-explorer">
-              {/* Filter controls */}
               <div className="filter-bar filter-bar--inline">
                 <span className="filter-bar__label">Activity</span>
-                <select
-                  className="filter-bar__select"
-                  value={selectedActivity}
-                  onChange={(e) => setSelectedActivity(e.target.value)}
-                >
+                <select className="filter-bar__select" value={selectedActivity} onChange={(e) => setSelectedActivity(e.target.value)}>
                   {activities.map((activity, i) => (
                     <option key={`${activity}-${i}`} value={activity}>{activity}</option>
                   ))}
                 </select>
-
                 <div className="filter-bar__divider" />
-
                 <span className="filter-bar__label">Hours</span>
-                <select
-                  className="filter-bar__select"
-                  value={operator}
-                  onChange={(e) => setOperator(e.target.value)}
-                >
+                <select className="filter-bar__select" value={operator} onChange={(e) => setOperator(e.target.value)}>
                   <option value=">">&gt;</option>
                   <option value="<">&lt;</option>
                   <option value=">=">&ge;</option>
                   <option value="<=">&le;</option>
                 </select>
-
-                <input
-                  type="number"
-                  className="filter-bar__input"
-                  value={threshold}
-                  onChange={(e) => setThreshold(Number(e.target.value))}
-                />
-
+                <input type="number" className="filter-bar__input" value={threshold} onChange={(e) => setThreshold(Number(e.target.value))} />
                 <div className="filter-bar__divider" />
-
                 <div className="filter-bar__result">
                   <span className="filter-bar__result-count">{filteredClusters.length}</span>
                   clusters matched
                 </div>
               </div>
-
-              {/* Pie chart */}
               <div className="cluster-explorer__chart">
                 <PieChart
                   clusterData={filteredClusters}
@@ -172,11 +237,11 @@ function App() {
           </div>
         </section>
 
-        {/* ── Section 3: Cluster Profiles ──────────────────────── */}
-        <section className="section animate-fade-in">
+        {/* Section 3: Cluster Profiles — radial charts with sticky legend panel */}
+        <section className="section animate-fade-in" ref={radialSectionRef}>
           <div className="section__header">
             <h2 className="section__title">Cluster Profiles</h2>
-            <span className="section__desc">Radial breakdown of activity time for each selected cluster</span>
+            <span className="section__desc">Radial breakdown of activity time · hover an arc for details</span>
           </div>
           <div className="grid-2">
             <div className="card">
@@ -206,7 +271,7 @@ function App() {
           </div>
         </section>
 
-        {/* ── Section 4: Comparison & Activity Detail ──────────── */}
+        {/* Section 4: Comparison */}
         <section className="section animate-fade-in">
           <div className="section__header">
             <h2 className="section__title">Side-by-Side Comparison</h2>
@@ -222,10 +287,7 @@ function App() {
                 <span className="tag tag--green">Comparison</span>
               </div>
               <div className="card__body">
-                <CombinedRadialBar
-                  selectedFirstCluster={selectedFirstCluster}
-                  selectedSecondCluster={selectedSecondCluster}
-                />
+                <CombinedRadialBar selectedFirstCluster={selectedFirstCluster} selectedSecondCluster={selectedSecondCluster} />
               </div>
             </div>
             <div className="card">
@@ -245,48 +307,22 @@ function App() {
 
       </main>
 
-      {/* ── Sticky Cluster Slider ─────────────────────────────── */}
-      <div className="cluster-slider">
-        <div className="cluster-slider__header">
-          <span className="cluster-slider__title">Selected Clusters</span>
+      {/* ── Sticky Legend Panel (visible only when Radial section is in view) ── */}
+      <aside className={`legend-panel ${showLegendPanel ? 'legend-panel--visible' : ''}`}>
+        <div className="legend-panel__header">
+          <span className="legend-panel__title">Activity Legend</span>
+          <span className="legend-panel__sub">Cluster A</span>
         </div>
-        <div className="cluster-slider__row">
-          <span className="cluster-slider__role cluster-slider__role--a">A</span>
-          <span className="cluster-slider__name">
-            {getClusterProfile(`Cluster ${selectedFirstCluster.cluster_id}`)}
-          </span>
+        <div className="legend-panel__list">
+          {activityEntries.map(({ activity, proportion, color }) => (
+            <div key={activity} className="legend-panel__item">
+              <span className="legend-panel__dot" style={{ background: color }} />
+              <span className="legend-panel__label">{activity}</span>
+              <span className="legend-panel__value">{(proportion * 24).toFixed(1)}h</span>
+            </div>
+          ))}
         </div>
-        <div className="cluster-slider__divider" />
-        <div className="cluster-slider__row">
-          <span className="cluster-slider__role cluster-slider__role--b">B</span>
-          <span className="cluster-slider__name">
-            {getClusterProfile(`Cluster ${selectedSecondCluster.cluster_id}`)}
-          </span>
-        </div>
-        <div className="cluster-slider__hint">
-          L-click pie = A &nbsp;·&nbsp; R-click pie = B
-        </div>
-        <div className="cluster-slider__swatches">
-          {clusters.map((c, i) => {
-            const isFirst  = c.cluster_id === selectedFirstCluster.cluster_id;
-            const isSecond = c.cluster_id === selectedSecondCluster.cluster_id;
-            return (
-              <button
-                key={c.cluster_id}
-                className={[
-                  'cluster-swatch',
-                  isFirst  ? 'cluster-swatch--a' : '',
-                  isSecond ? 'cluster-swatch--b' : '',
-                ].join(' ')}
-                style={{ background: colors[i % colors.length] }}
-                title={getClusterProfile(`Cluster ${c.cluster_id}`)}
-                onClick={() => setSelectedFirstCluster(c)}
-                onContextMenu={(e) => { e.preventDefault(); setSelectedSecondCluster(c); }}
-              />
-            );
-          })}
-        </div>
-      </div>
+      </aside>
 
     </div>
   );
