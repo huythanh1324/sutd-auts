@@ -1,144 +1,94 @@
-import React, { Activity, useState } from 'react';
+import React, { useState } from 'react';
 import { Arc } from '@visx/shape';
 import { scaleLinear } from '@visx/scale';
-import activityColors from "../constant/activityColor"
-import { scaleOrdinal } from "@visx/scale";
-import { LegendOrdinal } from "@visx/legend";
-
+import activityColors from "../constant/activityColor";
 
 type Datum = {
-    label: string;
-    value: number;
+  label: string;
+  value: number;
 };
 
 const width = 500;
-const height = 600;
+const height = 500;
 
 const RadialBar = ({ selectedCluster }) => {
+  const [hovered, setHovered] = useState<{ activity: string; proportion: number } | null>(null);
 
-    const data = Object.entries(
-        selectedCluster.activity_proportions
-    ).map(([activity, proportion]) => ({
-        activity,
-        proportion,
-    }));
+  const cx = width / 2;
+  const cy = height / 2;
+  const innerRadius = 80;
+  const maxRadius = Math.min(width, height) / 2 - 20;
 
-    const [hovered, setHovered] = useState<null | {
-        activity: string;
-        proportion: number;
-    }>(null);
+  const entries = Object.entries(selectedCluster.activity_proportions) as [string, number][];
+  const maxProportion = Math.max(...entries.map(([, v]) => v));
 
-    const centerX = width / 2;
-    const centerY = height / 2;
+  const radiusScale = scaleLinear({
+    domain: [0, maxProportion],
+    range: [innerRadius, maxRadius],
+  });
 
-    const innerRadius = 100;
-    const maxOuterRadius = 260;
+  const angleStep = (2 * Math.PI) / entries.length;
+  const gap = 0.04;
 
+  return (
+    <svg width={width} height={height}>
+      <g transform={`translate(${cx}, ${cy})`}>
+        {entries.map(([activity, proportion], i) => {
+          const startAngle = i * angleStep + gap / 2;
+          const endAngle   = (i + 1) * angleStep - gap / 2;
+          const outerRadius = radiusScale(proportion);
+          const isHovered = hovered?.activity === activity;
 
+          return (
+            <g
+              key={activity}
+              onMouseEnter={() => setHovered({ activity, proportion })}
+              onMouseLeave={() => setHovered(null)}
+              style={{ cursor: 'pointer' }}
+            >
+              <Arc
+                innerRadius={innerRadius}
+                outerRadius={isHovered ? outerRadius + 8 : outerRadius}
+                startAngle={startAngle}
+                endAngle={endAngle}
+                fill={activityColors[i]}
+                style={{ transition: 'all 0.15s ease' }}
+              />
+            </g>
+          );
+        })}
 
-    const radiusScale = scaleLinear({
-        domain: [0, Math.max(...data.map((d) => d.proportion))],
-        range: [innerRadius + 3, maxOuterRadius],
-    });
+        {/* Centre label on hover */}
+        {hovered && (
+          <text
+            x={0} y={0}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            style={{ pointerEvents: 'none' }}
+          >
+            <tspan x={0} dy={-10} fontSize={13} fontWeight={600} fill="#0a2540">
+              {hovered.activity}
+            </tspan>
+            <tspan x={0} dy={22} fontSize={13} fill="#425466">
+              {(hovered.proportion * 24).toFixed(2)} hrs
+            </tspan>
+          </text>
+        )}
 
-    const angleStep = (2 * Math.PI) / data.length;
-    const gap = 0.05; // radians
-
-
-    const colorScale = scaleOrdinal({
-        domain: data.map((d) => d.activity),
-        range: activityColors,
-    });
-    return (
-        <div className='flex'>
-            <svg width={width} height={height}>
-                <g transform={`translate(${centerX}, ${centerY})`}>
-                    {data.map((d, i) => {
-                        const startAngle = i * angleStep + gap / 2;
-                        const endAngle = (i + 1) * angleStep - gap / 2;
-
-                        const outerRadius = radiusScale(d.proportion);
-
-                        const midAngle = (startAngle + endAngle) / 2;
-
-                        const labelRadius = outerRadius + 25;
-
-                        const x =
-                            Math.cos(midAngle - Math.PI / 2) * labelRadius;
-
-                        const y =
-                            Math.sin(midAngle - Math.PI / 2) * labelRadius;
-
-                        return (
-                            <g
-                                key={d.activity}
-                                onMouseEnter={() =>
-                                    setHovered({
-                                        activity: d.activity,
-                                        proportion: d.proportion,
-                                    })
-                                }
-                                onMouseLeave={() => setHovered(null)}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                <Arc
-                                    innerRadius={innerRadius}
-                                    outerRadius={outerRadius}
-                                    startAngle={startAngle}
-                                    endAngle={endAngle}
-                                    fill={activityColors[i]}
-                                />
-
-                                {/* <text
-                                x={x}
-                                y={y}
-                                textAnchor="middle"
-                                dominantBaseline="middle"
-                                fontSize={11}
-                                >
-                                {d.activity}
-                                </text> */}
-
-                                {/* <text
-                                x={x}
-                                y={y + 14}
-                                textAnchor="middle"
-                                dominantBaseline="middle"
-                                fontSize={10}
-                                fill="#666"
-                                >
-                                {(d.proportion * 24).toFixed(1)}h
-                                </text> */}
-                            </g>
-                        );
-                    })}
-                    {hovered && (
-                        <text
-                            x={0}
-                            y={0}
-                            textAnchor="middle"
-                            dominantBaseline="middle"
-                            fontSize={16}
-                            fill="#111"
-                            style={{ pointerEvents: 'none' }}
-                        >
-                            <tspan x={0} dy={-6} fontWeight={600}>
-                                {hovered.activity}
-                            </tspan>
-                            <tspan x={0} dy={20} fontSize={14} fill="#555">
-                                {(hovered.proportion * 24).toFixed(2)} hrs
-                            </tspan>
-                        </text>
-                    )}
-                </g>
-            </svg>
-            <LegendOrdinal
-                scale={colorScale}
-                direction="column"
-                labelMargin="0 0 0 8px"
-            />
-        </div>
-    );
-}
+        {/* Idle centre label */}
+        {!hovered && (
+          <text x={0} y={0} textAnchor="middle" dominantBaseline="middle">
+            <tspan x={0} dy={-8} fontSize={12} fill="#8898aa" fontWeight={500}>
+              Hover arc
+            </tspan>
+            <tspan x={0} dy={18} fontSize={11} fill="#c4cdd8">
+              for details
+            </tspan>
+          </text>
+        )}
+      </g>
+    </svg>
+  );
+};
 
 export default RadialBar;
