@@ -698,10 +698,10 @@ body {
 .legend-panel {
   position: fixed;
   top: 50%;
-  right: 0px;
+  left: 0px;
   transform: translateY(-50%) translateX(calc(var(--legend-panel-width) + 40px));
   width: var(--legend-panel-width);
-  max-height: calc(100vh - 120px);
+  max-height: 50%;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
