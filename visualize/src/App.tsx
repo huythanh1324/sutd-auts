@@ -8,17 +8,26 @@ import WordCloud from "./component/WordCloud";
 import getClusterProfile from "./common/ClusterProfile.js";
 import colors from "./constant/colors";
 import activityColors from "./constant/activityColor";
+import Histogram from "./component/Histogram.js";
 
 function App() {
   const clusters = Object.values(clusterData);
   const [selectedFirstCluster, setSelectedFirstCluster] = useState(clusters[0]);
   const [selectedSecondCluster, setSelectedSecondCluster] = useState(clusters[1]);
-
+  const data = Array.from({ length: 300 }, () =>
+    Math.floor(Math.random() * 100)
+  );
   const activities = Object.keys(clusters[0].activity_proportions);
 
   const [selectedActivity, setSelectedActivity] = useState<string | undefined>(undefined);
+  const [selectedHistogramActivity, setSelectedHistogramActivity] = useState<string>("Sleep");
   const [operator, setOperator] = useState<string>(">=");
   const [threshold, setThreshold] = useState<number>(0);
+  const histogramData = useMemo(() => {
+    return clusters.map(
+      (cluster) => cluster.activity_proportions[selectedHistogramActivity] * 24
+    );
+  }, [selectedHistogramActivity])
 
   // Drawer state
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -30,7 +39,7 @@ function App() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setShowLegendPanel(entry.isIntersecting),
-      { threshold: 0.1 }
+      { threshold: 0.5 }
     );
     if (radialSectionRef.current) observer.observe(radialSectionRef.current);
     return () => observer.disconnect();
@@ -184,6 +193,34 @@ function App() {
             </div>
           </div>
         </section>
+        <section className="section animate-fade-in">
+          <div className="section__header">
+            <h2 className="section__title">Activity Histogram</h2>
+            {/* <span className="section__desc">Word size reflects total time spent across all respondents</span> */}
+          </div>
+
+          <div className="card">
+            <div className="card__header">
+              <div>
+                <div className="card__title">Histogram</div>
+                <div className="card__subtitle">Distribution of activities share across clusters</div>
+              </div>
+              <span className="tag tag--blue">Overview</span>
+            </div>
+            <div className="filter-bar filter-bar--inline">
+              <span className="filter-bar__label">Activity</span>
+              <select className="filter-bar__select" value={selectedHistogramActivity} onChange={(e) => setSelectedHistogramActivity(e.target.value)}>
+                {activities.map((activity, i) => (
+                  <option key={`${activity}-${i}`} value={activity}>{activity}</option>
+                ))}
+              </select>
+            </div>
+            <div className="card__body">
+              <Histogram width={600} height={400} data={histogramData} />
+            </div>
+          </div>
+        </section>
+
 
         {/* Section 2: Cluster Explorer */}
         <section className="section animate-fade-in">
@@ -265,7 +302,7 @@ function App() {
                 <span className="tag tag--yellow">{`${getClusterProfile(`Cluster ${selectedSecondCluster.cluster_id}`)}`}</span>
               </div>
               <div className="card__body">
-                <RadialBar selectedCluster={selectedSecondCluster} />
+                <ActivityBarChart selectedCluster={selectedFirstCluster} />
               </div>
             </div>
           </div>
@@ -287,7 +324,7 @@ function App() {
                 <span className="tag tag--green">Comparison</span>
               </div>
               <div className="card__body">
-                <CombinedRadialBar selectedFirstCluster={selectedFirstCluster} selectedSecondCluster={selectedSecondCluster} />
+                <RadialBar selectedCluster={selectedSecondCluster} />
               </div>
             </div>
             <div className="card">
@@ -299,7 +336,7 @@ function App() {
                 <span className="tag tag--blue">Primary</span>
               </div>
               <div className="card__body">
-                <ActivityBarChart selectedCluster={selectedFirstCluster} />
+                <CombinedRadialBar selectedFirstCluster={selectedFirstCluster} selectedSecondCluster={selectedSecondCluster} />
               </div>
             </div>
           </div>
