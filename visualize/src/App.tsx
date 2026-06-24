@@ -296,10 +296,11 @@ function App() {
             <div className="card">
               <div className="card__header">
                 <div>
-                  <div className="card__title">Comparison Cluster</div>
-                  <div className="card__subtitle">Right-click a pie slice to change</div>
+                  <div className="card__title">Activity Bar Chart</div>
+                  <div className="card__subtitle">Hours per activity for the primary cluster</div>
                 </div>
-                <span className="tag tag--yellow">{`${getClusterProfile(`Cluster ${selectedSecondCluster.cluster_id}`)}`}</span>
+                <span className="tag tag--blue">Primary</span>
+
               </div>
               <div className="card__body">
                 <ActivityBarChart selectedCluster={selectedFirstCluster} />
@@ -318,10 +319,10 @@ function App() {
             <div className="card">
               <div className="card__header">
                 <div>
-                  <div className="card__title">Combined Radial Overlay</div>
-                  <div className="card__subtitle">Hover an arc to see hours per activity</div>
+                  <div className="card__title">Comparison Cluster</div>
+                  <div className="card__subtitle">Right-click a pie slice to change</div>
                 </div>
-                <span className="tag tag--green">Comparison</span>
+                <span className="tag tag--yellow">{`${getClusterProfile(`Cluster ${selectedSecondCluster.cluster_id}`)}`}</span>
               </div>
               <div className="card__body">
                 <RadialBar selectedCluster={selectedSecondCluster} />
@@ -330,10 +331,10 @@ function App() {
             <div className="card">
               <div className="card__header">
                 <div>
-                  <div className="card__title">Activity Bar Chart</div>
-                  <div className="card__subtitle">Hours per activity for the primary cluster</div>
+                  <div className="card__title">Combined Radial Overlay</div>
+                  <div className="card__subtitle">Hover an arc to see hours per activity</div>
                 </div>
-                <span className="tag tag--blue">Primary</span>
+                <span className="tag tag--green">Comparison</span>
               </div>
               <div className="card__body">
                 <CombinedRadialBar selectedFirstCluster={selectedFirstCluster} selectedSecondCluster={selectedSecondCluster} />
